@@ -32,6 +32,11 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: "Terjadi kesalahan pada server. Silakan coba lagi." });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}
+
+// Export untuk Vercel Serverless
+module.exports = app;
