@@ -26,6 +26,10 @@ const apiLimiter = rateLimit({
 
 app.use('/api/analyze', apiLimiter, analyzeRoute);
 
+app.get('/api/status', (req, res) => {
+  res.json({ status: 'ok', message: 'Backend connected successfully!' });
+});
+
 // Central error handler
 app.use((err, req, res, next) => {
   console.error(err.stack);
